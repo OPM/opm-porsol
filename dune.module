@@ -3,7 +3,7 @@
 ################################
 
 #Name of the module
-Module: dune-porsol
+Module: opm-porsol
 Version: 0.1
 Maintainer: atgeirr@sintef.no
 #depending on 
