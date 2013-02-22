@@ -2,17 +2,18 @@
 # vim: set filetype=cmake autoindent tabstop=2 shiftwidth=2 noexpandtab softtabstop=2 nowrap:
 
 # key information about the library
-set (project "opm-core")
+set (project "opm-porsol")
 set (${project}_NAME "${project}")
-set (${project}_DESCRIPTION "Open Porous Media Initiative Core Library")
+set (${project}_DESCRIPTION "DUNE module containing porous media PDE solvers")
 set (${project}_DIR "opm")
 set (${project}_VERSION_MAJOR 1)
 set (${project}_VERSION_MINOR 0)
-set (doxy_dir "Documentation")
+set (doxy_dir "doc/doxygen")
 
 # defines that must be present in config.h for our headers
 set (${project}_CONFIG_VAR
 	HAVE_DYNAMIC_BOOST_TEST
+	HAVE_VALGRIND
 	)
 
 # dependencies
@@ -25,7 +26,11 @@ set (${project}_DEPS
 	"Boost 1.39.0
 		COMPONENTS date_time filesystem system unit_test_framework REQUIRED"
 	# DUNE dependency
-	"dune-common"
+	"dune-common REQUIRED;
+	dune-istl REQUIRED;
+	dune-grid REQUIRED;
+	opm-core REQUIRED;
+	dune-cornerpoint REQUIRED"
 	)
 
 # C++ project
@@ -107,6 +112,11 @@ opm_find_tutorials ()
 
 # example programs are found in the examples/ directory
 opm_find_examples ()
+
+### --- begin opm-porsol specific --- ###
+opm_disable_source (${project} ${${project}_DIR}/porsol/twophase2)
+opm_disable_source (examples ${examples_DIR}/twophase2_test.cpp)
+### --- end opm-porsol specific --- ###
 
 # create configuration header which describes available features
 # necessary to compile this library. singular version is the names that
