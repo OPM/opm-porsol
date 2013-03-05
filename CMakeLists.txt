@@ -106,6 +106,9 @@ opm_out_dirs ()
 opm_sources (${project})
 
 ### --- begin opm-porsol specific --- ###
+if (NOT HAVE_CONSTEXPR)
+	opm_disable_source (examples examples/co2_sim_test.cpp)
+endif (NOT HAVE_CONSTEXPR)
 ### --- end opm-porsol specific --- ###
 
 # create configuration header which describes available features
