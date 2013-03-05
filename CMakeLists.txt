@@ -68,6 +68,12 @@ include (UseFastBuilds)
 # precompiled headers
 include (UsePrecompHeaders)
 
+### --- begin opm-porsol specific --- ###
+# parallel programming
+include (UseOpenMP)
+find_openmp (${project})
+### --- end opm-porsol specific --- ###
+
 # macro to set standard variables (INCLUDE_DIRS, LIBRARIES etc.)
 include (OpmFind)
 find_and_append_package_list_to (${project} ${${project}_DEPS})
