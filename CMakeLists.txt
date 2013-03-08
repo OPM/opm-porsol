@@ -51,6 +51,10 @@ system_info ()
 include (UseVCSInfo)
 vcs_info ()
 
+# print toolchain information to identify compilers with potential bugs
+include (UseCompVer)
+compiler_info ()
+
 # include special
 if (CMAKE_VERSION VERSION_LESS "2.8.7")
 	message (STATUS "Enabling backward compatibility modules for CMake ${CMAKE_VERSION}")
@@ -67,6 +71,13 @@ include (UseFastBuilds)
 
 # precompiled headers
 include (UsePrecompHeaders)
+
+# optimize full if we're not doing a debug build
+include (UseOptimization)
+
+# turn on all warnings; this must be done before adding any
+# dependencies, in case they alter the list of warnings
+include (UseWarnings)
 
 ### --- begin opm-porsol specific --- ###
 # parallel programming
@@ -87,12 +98,6 @@ include (UseOnlyNeeded)
 
 # put debug information into every executable
 include (UseDebugSymbols)
-
-# optimize full if we're not doing a debug build
-include (UseOptimization)
-
-# turn on all warnings
-include (UseWarnings)
 
 # detect if Boost is in a shared library
 include (UseDynamicBoost)
