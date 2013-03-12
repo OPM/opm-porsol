@@ -7,6 +7,4 @@ Module: opm-porsol
 Version: 0.1
 Maintainer: atgeirr@sintef.no
 #depending on 
-Depends: dune-common dune-grid dune-istl dune-cornerpoint
-# Actually, opm-porsol also depends on OPM-core, but specifying it
-# here sometimes breaks the build
+Depends: dune-common dune-grid dune-istl opm-core dune-cornerpoint
