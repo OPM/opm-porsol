@@ -202,10 +202,8 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/euler/ImplicitCapillarity.hpp
 	opm/porsol/euler/ImplicitCapillarity_impl.hpp
 	opm/porsol/euler/MatchSaturatedVolumeFunctor.hpp
-	opm/porsol/mimetic/IfshInterface.hpp
 	opm/porsol/mimetic/IncompFlowSolverHybrid.hpp
 	opm/porsol/mimetic/MimeticIPAnisoRelpermEvaluator.hpp
 	opm/porsol/mimetic/MimeticIPEvaluator.hpp
 	opm/porsol/mimetic/TpfaCompressible.hpp
-	opm/porsol/mimetic/TpfaInterface.hpp
 	)
