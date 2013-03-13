@@ -56,21 +56,13 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/blackoil_sim_test.cpp
 	examples/co2_blackoil_pvt.cpp
 	examples/co2_sim_test.cpp
-	examples/grdecl_to_legacy_test.cpp
-	examples/ifsh_solver_test.cpp
 	examples/implicitcap_test.cpp
-	examples/istl_test.cpp
 	examples/known_answer_test.cpp
-	examples/make_vtk_test.cpp
 	examples/mimetic_aniso_solver_test.cpp
 	examples/mimetic_periodic_test.cpp
 	examples/mimetic_solver_test.cpp
 	examples/simulator_implicit_test.cpp
 	examples/simulator_test.cpp
-	examples/spe10_test.cpp
-	examples/spu_2p.cpp
-	examples/tpfa_compressible_solver_test.cpp
-	examples/tpfa_solver_test.cpp
 	)
 
 # originally generated with the command:
