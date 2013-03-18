@@ -205,4 +205,5 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/mimetic/MimeticIPAnisoRelpermEvaluator.hpp
 	opm/porsol/mimetic/MimeticIPEvaluator.hpp
 	opm/porsol/mimetic/TpfaCompressible.hpp
+	opm/porsol/mimetic/TpfaCompressibleAssembler.hpp
 	)
