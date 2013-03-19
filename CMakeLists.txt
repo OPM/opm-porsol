@@ -129,7 +129,10 @@ opm_sources (${project})
 
 ### --- begin opm-porsol specific --- ###
 if (NOT HAVE_CONSTEXPR)
-	opm_disable_source (examples examples/co2_sim_test.cpp)
+	opm_disable_source (examples
+		examples/co2_blackoil_pvt.cpp
+		examples/co2_sim_test.cpp
+		)
 endif (NOT HAVE_CONSTEXPR)
 ### --- end opm-porsol specific --- ###
 
