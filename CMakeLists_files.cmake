@@ -39,8 +39,6 @@ list (APPEND MAIN_SOURCE_FILES
 list (APPEND TEST_SOURCE_FILES
 	tests/common/boundaryconditions_test.cpp
 	tests/common/matrix_test.cpp
-	tests/common/nonuniformtablelinear_test.cpp
-	tests/common/uniformtablelinear_test.cpp
 	)
 
 # originally generated with the command:
@@ -168,7 +166,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/LinearSolverISTL.hpp
 	opm/porsol/common/Matrix.hpp
 	opm/porsol/common/MatrixInverse.hpp
-	opm/porsol/common/NonuniformTableLinear.hpp
 	opm/porsol/common/PeriodicHelpers.hpp
 	opm/porsol/common/ReservoirPropertyCapillaryAnisotropicRelperm.hpp
 	opm/porsol/common/ReservoirPropertyCapillaryAnisotropicRelperm_impl.hpp
