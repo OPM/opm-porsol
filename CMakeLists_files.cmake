@@ -51,16 +51,23 @@ list (APPEND TEST_DATA_FILES
 list (APPEND EXAMPLE_SOURCE_FILES
 	examples/aniso_implicitcap_test.cpp
 	examples/aniso_simulator_test.cpp
-	examples/blackoil_sim_test.cpp
 	examples/co2_blackoil_pvt.cpp
-	examples/co2_sim_test.cpp
 	examples/implicitcap_test.cpp
 	examples/known_answer_test.cpp
 	examples/mimetic_aniso_solver_test.cpp
 	examples/mimetic_periodic_test.cpp
 	examples/mimetic_solver_test.cpp
-	examples/simulator_implicit_test.cpp
-	examples/simulator_test.cpp
+	examples/sim_blackoil_impes.cpp
+	examples/sim_co2_impes.cpp
+	examples/sim_steadystate_explicit.cpp
+	examples/sim_steadystate_implicit.cpp
+	)
+
+# programs listed here will not only be compiled, but also marked for
+# installation
+list (APPEND PROGRAM_SOURCE_FILES
+	examples/sim_blackoil_impes.cpp
+	examples/sim_co2_impes.cpp
 	)
 
 # originally generated with the command:
