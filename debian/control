@@ -1,12 +1,13 @@
-Source: libopm-porsol
+Source: opm-porsol
 Priority: extra
 Maintainer: Arne Morten Kvarving <arne.morten.kvarving@sintef.no>
 Build-Depends: build-essential, debhelper (>= 9), libboost-filesystem-dev,
                libboost-system-dev, libboost-date-time-dev, libboost-test-dev,
                libsuperlu3-dev, gfortran, libsuitesparse-dev, libopm-core-dev,
                libdune-common-dev, libdune-istl-dev, cmake, libtinyxml-dev, bc,
-               libert.ecl-dev, git, zlib1g-dev, libtool, libdune-cornerpoint-dev, libdune-grid-dev
-Build-Depends-Indep: doxygen, texlive-latex-extra, texlive-latex-recommended, ghostscript
+               libert.ecl-dev, git, zlib1g-dev, libtool,
+               libdune-cornerpoint-dev, libdune-grid-dev, doxygen,
+               texlive-latex-extra, texlive-latex-recommended, ghostscript
 Standards-Version: 3.9.2
 Section: libs
 Homepage: http://opm-project.org
