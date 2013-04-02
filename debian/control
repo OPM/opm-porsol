@@ -34,6 +34,16 @@ Provides: libopm-porsol
 Description: OPM porsol library
  This module provides semi-implicit pressure and transport solvers using the IMPES method.
 
+Package: libopm-porsol1-bin
+Section: libs
+Pre-Depends: ${misc:Pre-Depends}, multiarch-support
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Provides: libopm-porsol-bin
+Description: OPM porsol library -- applications
+ This module provides semi-implicit pressure and transport solvers using the IMPES method.
+
 Package: libopm-porsol1-doc
 Section: doc
 Architecture: all
