@@ -16,7 +16,7 @@ Vcs-Browser: https://github.com/OPM/opm-porsol
 
 Package: libopm-porsol1-dev
 Section: libdevel
-Architecture: all
+Architecture: any
 Multi-Arch: foreign
 Depends: libopm-porsol1 (= ${binary:Version})
 Provides: libopm-porsol-dev

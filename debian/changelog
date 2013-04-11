@@ -1,3 +1,9 @@
+opm-porsol (2013.03-3) precise; urgency=low
+
+  * Disable LTO usage
+
+ -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 08 Apr 2013 11:02:09 +0200
+
 opm-porsol (2013.03-2) precise; urgency=low
 
   * Now compatible with precise + launchpad
