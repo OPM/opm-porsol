@@ -7,4 +7,4 @@ Module: opm-porsol
 Version: 0.1
 Maintainer: atgeirr@sintef.no
 #depending on 
-Depends: dune-common dune-grid dune-istl opm-core dune-cornerpoint
+Depends: dune-common dune-grid dune-istl opm-core opm-material dune-cornerpoint
