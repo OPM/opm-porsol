@@ -30,6 +30,7 @@ set (${project}_DEPS
 	dune-istl REQUIRED;
 	dune-grid REQUIRED;
 	opm-core REQUIRED;
+	opm-material REQUIRED;
 	dune-cornerpoint REQUIRED"
 	)
 
