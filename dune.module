@@ -4,6 +4,7 @@
 
 #Name of the module
 Module: opm-porsol
+Description: DUNE module containing porous media PDE solvers
 Version: 0.1
 Maintainer: atgeirr@sintef.no
 #depending on 
