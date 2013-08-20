@@ -47,12 +47,6 @@
 #include <dune/common/mpihelper.hh>
 #include <opm/core/utility/Units.hpp>
 
-// #if HAVE_ALUGRID
-// #include <dune/common/shared_ptr.hh>
-// #include <dune/grid/io/file/gmshreader.hh>
-// #include <dune/grid/alugrid.hh>
-// #endif
-
 #include <opm/porsol/common/SimulatorUtilities.hpp>
 #include <dune/grid/io/file/vtk/vtkwriter.hh>
 

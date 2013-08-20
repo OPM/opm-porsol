@@ -45,12 +45,6 @@
 #include <dune/common/mpihelper.hh>
 #include <opm/core/utility/Units.hpp>
 
-#if HAVE_ALUGRID
-#include <dune/common/shared_ptr.hh>
-#include <dune/grid/io/file/gmshreader.hh>
-#include <dune/grid/alugrid.hh>
-#endif
-
 #include <opm/porsol/common/SimulatorUtilities.hpp>
 #include <dune/grid/io/file/vtk/vtkwriter.hh>
 
@@ -73,17 +67,6 @@
 
 
 
-#if USE_ALUGRID
-template<class GType>
-Dune::shared_ptr<GType>
-make_gmsh(const std::string& msh_file)
-{
-    return Dune::shared_ptr<GType>(Dune::GmshReader<GType>::read(msh_file));
-}
-#endif
-
-
-
 template<int dim, class GI, class RI>
 void test_flowsolver(const GI& g, const RI& r)
 {
@@ -98,10 +81,8 @@ void test_flowsolver(const GI& g, const RI& r)
     typedef Opm::FlowBC BC;
     FBC flow_bc(7);
 
-#if !USE_ALUGRID
     flow_bc.flowCond(5) = BC(BC::Dirichlet, 100.0*Opm::unit::barsa);
     flow_bc.flowCond(6) = BC(BC::Dirichlet, 0.0*Opm::unit::barsa);
-#endif
 
     typename CI::Vector gravity(0.0);
     // gravity[2] = Dune::unit::gravity;
@@ -165,7 +146,6 @@ int main(int argc, char** argv)
     Dune::MPIHelper::instance(argc,argv);
 
     // Make a grid
-#if !USE_ALUGRID
     // Make a grid and props.
     Dune::CpGrid grid;
     ReservoirPropertyCapillary<3> res_prop;
@@ -173,14 +153,6 @@ int main(int argc, char** argv)
 
     // Make the grid interface
     Opm::GridInterfaceEuler<Dune::CpGrid> g(grid);
-#else
-    typedef Dune::ALUSimplexGrid<3,3> GType;
-    Dune::shared_ptr<GType> pgrid = make_gmsh<GType>(param.get<std::string>("filename"));
-    Opm::GridInterfaceEuler<GType> g(*pgrid);
-
-    ReservoirPropertyCapillary<3> res_prop;
-    res_prop.init(g.numberOfCells());
-#endif
 
     test_flowsolver<3>(g, res_prop);
 }
