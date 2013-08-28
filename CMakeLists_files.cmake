@@ -22,6 +22,9 @@
 #	                      files can of course include other files than these;
 #	                      you should only add to this list if the *user* of
 #	                      the library needs it.
+#
+# ATTIC_FILES           Unmaintained files. This for the projects developers
+#                       only. Don't expect these files to build.
 
 # originally generated with the command:
 # find opm -name '*.c*' -a ! -wholename '*/twophase2/*' -printf '\t%p\n' | sort
@@ -61,6 +64,21 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/sim_co2_impes.cpp
 	examples/sim_steadystate_explicit.cpp
 	examples/sim_steadystate_implicit.cpp
+	)
+
+# originally generated with the command:
+# find attic -name '*.c*' -printf '\t%p\n' | sort
+list (APPEND ATTIC_FILES
+	attic/appleyard/appleyard_test.cpp
+	attic/blackoil/bo_fluid_p_and_z_deps.cpp
+	attic/blackoil/bo_fluid_pressuredeps.cpp
+	attic/blackoil/bo_fluid_test.cpp
+	attic/blackoil/bo_well_test.cpp
+	attic/common/gie_test.cpp
+	attic/common/periodic_test.cpp
+	attic/common/rockjfunc_test.cpp
+	attic/euler/euler_upstream_test.cpp
+	attic/mimetic/mimetic_ipeval_test.cpp
 	)
 
 # programs listed here will not only be compiled, but also marked for
