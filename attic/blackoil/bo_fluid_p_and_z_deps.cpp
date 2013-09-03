@@ -104,7 +104,7 @@ try
                 var = state.solution_factor_[2];
                 break;
             default:
-                THROW("Unknown varable specification: " << variable);
+                OPM_THROW(std::runtime_error, "Unknown varable specification: " << variable);
                 break;
             }
             std::cout << var << ' ';
