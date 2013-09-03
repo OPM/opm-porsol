@@ -38,7 +38,6 @@
 
 #include <iostream>
 
-#include <boost/static_assert.hpp>
 
 #include <array>
 #include <dune/grid/yaspgrid.hh>
