@@ -44,11 +44,16 @@ using namespace Opm;
 
 
 int main(int argc, char** argv)
+try
 {
     Opm::parameter::ParameterGroup param(argc, argv);
     Dune::MPIHelper::instance(argc,argv);
     EulerSolverTester tester;
     tester.init(param);
     tester.run();
+}
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
 }
 

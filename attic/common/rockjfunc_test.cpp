@@ -42,6 +42,7 @@
 using namespace Opm;
 
 int main(int argc, char** argv)
+try
 {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " file\n";
@@ -63,3 +64,8 @@ int main(int argc, char** argv)
     double sat2 = r.satFromCapPress(perm, poro, cp);
     std::cout << "sat2 = " << sat2 << std::endl;
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+

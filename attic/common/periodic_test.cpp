@@ -45,6 +45,7 @@
 using namespace Opm;
 
 int main(int argc, char** argv)
+try
 {
     Opm::parameter::ParameterGroup param(argc, argv);
     Dune::CpGrid grid;
@@ -69,4 +70,9 @@ int main(int argc, char** argv)
     createPeriodic(bcs, gi, fcond, scond);
     std::cout << bcs;
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
 

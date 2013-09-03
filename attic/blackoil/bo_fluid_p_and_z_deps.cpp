@@ -28,6 +28,7 @@
 
 
 int main(int argc, char** argv)
+try
 {
     std::cout << "%{\n";
 
@@ -125,4 +126,9 @@ int main(int argc, char** argv)
     }
     std::cout << "];\n";
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
 
