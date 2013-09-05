@@ -39,6 +39,8 @@
 #include <opm/porsol/common/Matrix.hpp>
 #include <opm/core/utility/Units.hpp>
 
+#include <iostream>
+
 using namespace Opm;
 
 int main(int argc, char** argv)

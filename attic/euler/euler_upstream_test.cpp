@@ -40,6 +40,8 @@
 #include "../EulerSolverTester.hpp"
 #include <dune/common/mpihelper.hh>
 
+#include <iostream>
+
 using namespace Opm;
 
 

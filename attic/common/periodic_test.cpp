@@ -39,8 +39,10 @@
 #include <opm/porsol/common/BoundaryConditions.hpp>
 #include <opm/porsol/common/GridInterfaceEuler.hpp>
 #include <dune/grid/CpGrid.hpp>
-#include <array>
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
+
+#include <array>
+#include <iostream>
 
 using namespace Opm;
 

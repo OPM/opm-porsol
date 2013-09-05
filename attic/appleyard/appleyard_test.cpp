@@ -22,6 +22,8 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/porsol/appleyard/Appleyard.hpp>
 
+#include <iostream>
+
 using namespace Opm;
 
 bool getSaturationUpdate(double time0,

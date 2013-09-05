@@ -23,6 +23,7 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <dune/common/fvector.hh>
 
+#include <iostream>
 
 int main(int argc, char** argv)
 try

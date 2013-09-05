@@ -26,6 +26,7 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/core/eclipse/EclipseGridParser.hpp>
 
+#include <iostream>
 
 int main(int argc, char** argv)
 try
