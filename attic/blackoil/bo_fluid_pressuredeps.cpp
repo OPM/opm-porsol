@@ -25,8 +25,10 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/core/eclipse/EclipseGridParser.hpp>
 
+#include <iostream>
 
 int main(int argc, char** argv)
+try
 {
     // Parameters.
     Opm::parameter::ParameterGroup param(argc, argv);
@@ -91,3 +93,8 @@ int main(int argc, char** argv)
         }
     }
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+

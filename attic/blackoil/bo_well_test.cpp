@@ -32,6 +32,7 @@ void write_fields(std::ostream& os, const Opm::EclipseGridParser& parser);
 // Writes field data with and without unit conversion.
 
 int main(int argc, char** argv)
+try
 {
     // Parser. 
     const std::string ecl_file = (argc == 1) ? "SPE9.DATA" : argv[1];
@@ -56,6 +57,11 @@ int main(int argc, char** argv)
     
     return 0;
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
 
 void write_fields(std::ostream& os, const Opm::EclipseGridParser& parser)
 {

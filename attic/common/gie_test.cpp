@@ -38,7 +38,6 @@
 
 #include <iostream>
 
-#include <boost/static_assert.hpp>
 
 #include <array>
 #include <dune/grid/yaspgrid.hh>
@@ -173,7 +172,7 @@ void check_cpgrid()
 }
 
 
-int main (int argc , char **argv) {
+int main (int argc , char **argv) try {
     try {
 #if HAVE_MPI
 	// initialize MPI
@@ -227,3 +226,8 @@ int main (int argc , char **argv) {
 
     return 0;
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+

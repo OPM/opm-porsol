@@ -26,8 +26,10 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/core/eclipse/EclipseGridParser.hpp>
 
+#include <iostream>
 
 int main(int argc, char** argv)
+try
 {
     std::cout << "%{\n";
 
@@ -103,7 +105,7 @@ int main(int argc, char** argv)
                 var = state.solution_factor_[2];
                 break;
             default:
-                THROW("Unknown varable specification: " << variable);
+                OPM_THROW(std::runtime_error, "Unknown varable specification: " << variable);
                 break;
             }
             std::cout << var << ' ';
@@ -125,4 +127,9 @@ int main(int argc, char** argv)
     }
     std::cout << "];\n";
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
 
