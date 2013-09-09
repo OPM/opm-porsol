@@ -39,12 +39,15 @@
 #include <opm/porsol/common/BoundaryConditions.hpp>
 #include <opm/porsol/common/GridInterfaceEuler.hpp>
 #include <dune/grid/CpGrid.hpp>
-#include <array>
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
+
+#include <array>
+#include <iostream>
 
 using namespace Opm;
 
 int main(int argc, char** argv)
+try
 {
     Opm::parameter::ParameterGroup param(argc, argv);
     Dune::CpGrid grid;
@@ -69,4 +72,9 @@ int main(int argc, char** argv)
     createPeriodic(bcs, gi, fcond, scond);
     std::cout << bcs;
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
 

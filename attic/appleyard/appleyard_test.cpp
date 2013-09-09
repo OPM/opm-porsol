@@ -22,6 +22,8 @@
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/porsol/appleyard/Appleyard.hpp>
 
+#include <iostream>
+
 using namespace Opm;
 
 bool getSaturationUpdate(double time0,
@@ -42,6 +44,7 @@ bool getSaturationUpdate(double time0,
 }
 
 int main(int argc, char** argv)
+try
 {
 	parameter::ParameterGroup param(argc, argv);
 	
@@ -86,3 +89,8 @@ int main(int argc, char** argv)
 	}
 	
 }
+catch (const std::exception &e) {
+    std::cerr << "Program threw an exception: " << e.what() << "\n";
+    throw;
+}
+
