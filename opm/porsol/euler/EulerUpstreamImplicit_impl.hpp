@@ -155,6 +155,11 @@ namespace Opm
         direclet_sat_.resize(0);
         direclet_hfaces_.resize(0);
 
+#if !defined(NDEBUG)
+        // Used in several assert()s below
+        const UnstructuredGrid& c_grid = *mygrid_.c_grid();
+#endif
+
         assert(periodic_cells_.size()==0);
         for (CIt c = g.cellbegin(); c != g.cellend(); ++c) {
             int cell0 = c->index();
