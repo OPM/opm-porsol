@@ -731,11 +731,11 @@ namespace Opm {
     {
         typedef typename FullMatrix<T,StoragePolicy,FortranOrdering>::value_type value_type;
 
-        static std::vector<value_type> tau;
-        static std::vector<value_type> work;
+        std::vector<value_type> tau;
+        std::vector<value_type> work;
 
-        if (int(tau .size()) <      A.numCols()) tau .resize(     A.numCols());
-        if (int(work.size()) < 64 * A.numRows()) work.resize(64 * A.numRows());  // 64 from ILAENV
+        tau .resize(     A.numCols());
+        work.resize(64 * A.numRows());  // 64 from ILAENV
 
         int info = 0;
 
