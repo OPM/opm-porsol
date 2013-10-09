@@ -1522,6 +1522,7 @@ namespace Opm {
 #endif
                 criterion.setProlongationDampingFactor(prolong_factor);
                 criterion.setBeta(1e-10);
+#pragma omp critical
                 precond_.reset(new Precond(*opS_, criterion, smootherArgs,
 				           1, smooth_steps, smooth_steps));
             }
@@ -1625,6 +1626,7 @@ namespace Opm {
                 crit.setDefaultValuesIsotropic(3, 2);
                 CoarsePolicy coarsePolicy(args, crit);
                 TransferPolicy policy(crit);
+#pragma omp critical
                 precond_.reset(new Precond(*opS_, level1, policy, coarsePolicy, 1 ,1));
             }
             // Construct solver for system of linear equations.
@@ -1689,6 +1691,7 @@ namespace Opm {
                 parms.setDebugLevel(verbosity_level);
                 parms.setNoPreSmoothSteps(smooth_steps);
                 parms.setNoPostSmoothSteps(smooth_steps);
+#pragma omp critical
                 precond_.reset(new Precond(*opS_, criterion, parms));
             }
             // Construct solver for system of linear equations.
