@@ -3,7 +3,7 @@
 #
 
 Name:           opm-porsol
-Version:        2013.03
+Version:        2013.10
 Release:        0
 Summary:        Open Porous Media - porsol library
 License:        GPL-3.0
@@ -11,7 +11,7 @@ Group:          Development/Libraries/C and C++
 Url:            http://www.opm-project.org/
 Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  blas-devel gcc-c++ gcc-gfortran lapack-devel dune-common-devel
-BuildRequires:  boost-devel git suitesparse-devel cmake28 doxygen bc
+BuildRequires:  boost-devel git suitesparse-devel cmake28 doxygen bc opm-material-devel
 BuildRequires:  tinyxml-devel dune-istl-devel superlu-devel opm-core-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Requires:       libopm-porsol1 = %{version}
