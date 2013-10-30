@@ -2,7 +2,7 @@
 # spec file for package opm-porsol
 #
 
-%define tag rc3
+%define tag final
 
 Name:           opm-porsol
 Version:        2013.10
