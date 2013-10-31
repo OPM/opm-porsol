@@ -6,9 +6,7 @@
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT                 = @abs_top_srcdir@/opm/ \
-			@abs_top_srcdir@/tests/not-unit/blackoil/simpleSPE9/blackoil_sim_test.txt \
-			@abs_top_srcdir@/tests/not-unit/blackoil/CO2/co2_sim_test.txt \
+INPUT                 = @abs_top_srcdir@/opm/
 
 # see e.g. dune-grid for the examples of mainpage and modules
 # INPUT                 += @srcdir@/mainpage #                          @srcdir@/modules
@@ -23,15 +21,11 @@ INPUT                 = @abs_top_srcdir@/opm/ \
 # directories that contain example code fragments that are included (see
 # the \include command).
 
-EXAMPLE_PATH          += @abs_top_srcdir@/examples/ \
-			@abs_top_srcdir@/tests/not-unit/blackoil/simpleSPE9 \ 		
-			@abs_top_srcdir@/tests/not-unit/blackoil/CO2 \
+EXAMPLE_PATH          += @abs_top_srcdir@/examples/
 
 # The IMAGE_PATH tag can be used to specify one or more files or
 # directories that contain image that are included in the documentation (see
 # the \image command).
-
-IMAGE_PATH            += @abs_top_srcdir@/@doxy_dir@/Figure
 
 # The LAYOUT_FILE tag can be used to specify a layout file which will be parsed
 # by doxygen. The layout file controls the global structure of the generated
