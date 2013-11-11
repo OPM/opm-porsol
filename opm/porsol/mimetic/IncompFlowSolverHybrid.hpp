@@ -1784,15 +1784,17 @@ namespace Opm {
             matMulAdd_TN(Scalar(1.0), S, one, Scalar(0.0), Ft);
 
             L_[c]  = std::accumulate(Ft.data(), Ft.data() + Ft.numRows(), 0.0);
-            g_[c] -= std::accumulate(gflux.begin(), gflux.end(), Scalar(0.0));
+            g_[c] -= std::accumulate(gflux.begin(),
+                                     gflux.begin() + S.numRows(), Scalar(0.0));
 
             // rhs <- v_g - rhs (== v_g - h)
-            std::transform(gflux.begin(), gflux.end(), rhs.begin(),
+            std::transform(gflux.begin(), gflux.begin() + S.numRows(),
+                           rhs.begin(),
                            rhs.begin(),
                            std::minus<Scalar>());
 
             // rhs <- rhs + g_[c]/L_[c]*F
-            std::transform(rhs.begin(), rhs.end(), Ft.data(),
+            std::transform(rhs.begin(), rhs.begin() + S.numRows(), Ft.data(),
                            rhs.begin(),
                            axpby<Scalar>(Scalar(1.0), Scalar(g_[c] / L_[c])));
 
