@@ -56,7 +56,7 @@ list (APPEND EXAMPLE_SOURCE_FILES
 	examples/aniso_simulator_test.cpp
 	examples/co2_blackoil_pvt.cpp
 	examples/implicitcap_test.cpp
-	examples/known_answer_test.cpp
+	#	examples/known_answer_test.cpp
 	examples/mimetic_aniso_solver_test.cpp
 	examples/mimetic_periodic_test.cpp
 	examples/mimetic_solver_test.cpp
