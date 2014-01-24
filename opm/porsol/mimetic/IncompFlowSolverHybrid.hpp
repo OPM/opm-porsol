@@ -63,6 +63,7 @@
 #include <dune/common/version.hh>
 #if DUNE_VERSION_NEWER(DUNE_ISTL, 2, 3)
 #include <dune/istl/paamg/fastamg.hh>
+#include <dune/istl/paamg/twolevelmethod.hh>
 #endif
 #include <dune/istl/paamg/kamg.hh>
 #include <dune/istl/paamg/pinfo.hh>
@@ -692,7 +693,18 @@ namespace Opm {
                 if(linsolver_verbosity)
                     std::cerr<<"Fast AMG is not available; falling back to CG preconditioned with the normal one."<<std::endl;
                 solveLinearSystemAMG(residual_tolerance, linsolver_verbosity, 
-				     linsolver_maxit, prolongate_factor, same_matrix, smooth_steps);
+                                     linsolver_maxit, prolongate_factor, same_matrix, smooth_steps);
+#endif
+                break;
+            case 4:
+#if DUNE_VERSION_NEWER(DUNE_ISTL, 2, 3)
+                solveLinearSystemTwolevel(residual_tolerance, linsolver_verbosity, 
+                                          linsolver_maxit, prolongate_factor, same_matrix,smooth_steps);
+#else
+                if(linsolver_verbosity)
+                    std::cerr<<"Two level AMG is not available; falling back to CG preconditioned with the normal one."<<std::endl;
+                solveLinearSystemAMG(residual_tolerance, linsolver_verbosity, 
+                                     linsolver_maxit, prolongate_factor, same_matrix, smooth_steps);
 #endif
                 break;
             default:
@@ -1510,6 +1522,7 @@ namespace Opm {
 #endif
                 criterion.setProlongationDampingFactor(prolong_factor);
                 criterion.setBeta(1e-10);
+#pragma omp critical
                 precond_.reset(new Precond(*opS_, criterion, smootherArgs,
 				           1, smooth_steps, smooth_steps));
             }
@@ -1539,6 +1552,110 @@ namespace Opm {
             }
 
         }
+
+#if DUNE_VERSION_NEWER(DUNE_ISTL, 2, 3)
+        void solveLinearSystemTwolevel(double residual_tolerance, int verbosity_level,
+                                       int maxit, double prolong_factor, bool same_matrix, int smooth_steps)
+        // ----------------------------------------------------------------
+        {
+            //! \brief The coupling metric used in the AMG
+            typedef Dune::Amg::FirstDiagonal CouplingMetric;
+
+            //! \brief The coupling criterion used in the AMG
+            typedef Dune::Amg::SymmetricCriterion<Matrix, CouplingMetric> CritBase;
+
+            //! \brief The coarsening criterion used in the AMG
+            typedef Dune::Amg::CoarsenCriterion<CritBase> Criterion;
+
+#if defined(HAVE_UMFPACK)
+            typedef Dune::UMFPack<Matrix> LUSolver;
+#elif defined(HAVE_SUPERLU)
+            typedef Dune::SuperLU<Matrix> LUSolver;
+#else
+            static_assert("Enable either SuperLU or UMFPACK");
+#endif
+            // level 1 precond
+            typedef Dune::SeqOverlappingSchwarz<Matrix, Vector,
+                    Dune::SymmetricMultiplicativeSchwarzMode,
+                    LUSolver> Schwarz;
+
+            typedef Dune::Amg::AggregationLevelTransferPolicy<Operator,
+                    Criterion> TransferPolicy;
+            typedef Dune::Amg::LevelTransferPolicy<Operator, Operator> LevelTransferPolicy;
+            typedef Dune::Amg::OneStepAMGCoarseSolverPolicy<Operator, Smoother,
+                    Criterion> CoarsePolicy;
+            typedef typename Dune::Amg::SmootherTraits<Smoother>::Arguments SmootherArgs;
+            typedef Dune::Amg::TwoLevelMethod<Operator, CoarsePolicy, Schwarz> Precond;
+
+            // Adapted from upscaling.cc by Arne Rekdal, 2009
+            Scalar residTol = residual_tolerance;
+
+            if (!same_matrix) {
+                // Regularize the matrix (only for pure Neumann problems...)
+                if (do_regularization_) {
+                    S_[0][0] *= 2;
+                }
+                opS_.reset(new Operator(S_));
+                const int cps = 1;
+                typename Schwarz::subdomain_vector rows;
+                int nel1 = pgrid_->grid().logicalCartesianSize()[0];
+                int nel2 = pgrid_->grid().logicalCartesianSize()[1];
+                rows.resize(nel1/cps*nel2/cps);
+
+                typedef typename GridInterface::CellIterator CI;
+                const std::vector<int>& cell = flowSolution_.cellno_;
+                const SparseTable<int>& cf   = flowSolution_.cellFaces_;
+
+                for (CI c = pgrid_->cellbegin(); c != pgrid_->cellend(); ++c) {
+                    std::array<int, 3> ijk;
+                    pgrid_->grid().getIJK(c->index(), ijk);  // CpGrid specific
+
+                    const int cix   = cell[ c->index() ];
+                    const int colix = ijk[0]/cps + (nel1/cps)*(ijk[1]/cps);
+                    rows[colix].insert(cf[cix].begin(), cf[cix].end());
+                }
+
+                Dune::shared_ptr<Schwarz> level1(new Schwarz(S_, rows, 1.0, false));
+                Criterion crit;
+                SmootherArgs args;
+                args.relaxationFactor = 1.0;
+                crit.setCoarsenTarget(5000);
+                crit.setGamma(1);
+                crit.setNoPreSmoothSteps(1);
+                crit.setNoPostSmoothSteps(1);
+                crit.setDefaultValuesIsotropic(3, 2);
+                CoarsePolicy coarsePolicy(args, crit);
+                TransferPolicy policy(crit);
+#pragma omp critical
+                precond_.reset(new Precond(*opS_, level1, policy, coarsePolicy, 1 ,1));
+            }
+            // Construct solver for system of linear equations.
+            Dune::CGSolver<Vector> linsolve(*opS_, dynamic_cast<Precond&>(*precond_), residTol, (maxit>0)?maxit:S_.N(), verbosity_level);
+
+            Dune::InverseOperatorResult result;
+            soln_ = 0.0;
+            // Adapt initial guess such Dirichlet boundary conditions are 
+            // represented, i.e. soln_i=A_{ii}^-1 rhs_i
+            typedef typename Dune::BCRSMatrix <MatrixBlockType>::ConstRowIterator RowIter;
+            typedef typename Dune::BCRSMatrix <MatrixBlockType>::ConstColIterator ColIter;
+            for(RowIter ri=S_.begin(); ri!=S_.end(); ++ri){
+                bool isDirichlet=true;
+                for(ColIter ci=ri->begin(); ci!=ri->end(); ++ci)
+                    if(ci.index()!=ri.index() && *ci!=0.0)
+                        isDirichlet=false;
+                if(isDirichlet)
+                    soln_[ri.index()]=rhs_[ri.index()]/S_[ri.index()][ri.index()];
+            }
+            // Solve system of linear equations to recover
+            // face/contact pressure values (soln_).
+            linsolve.apply(soln_, rhs_, result);
+            if (!result.converged) {
+                OPM_THROW(std::runtime_error, "Linear solver failed to converge in " << result.iterations << " iterations.\n"
+                      << "Residual reduction achieved is " << result.reduction << '\n');
+            }
+
+        }
+#endif
 
 #if defined(HAS_DUNE_FAST_AMG) || DUNE_VERSION_NEWER(DUNE_ISTL, 2, 3)
 
@@ -1574,6 +1691,7 @@ namespace Opm {
                 parms.setDebugLevel(verbosity_level);
                 parms.setNoPreSmoothSteps(smooth_steps);
                 parms.setNoPostSmoothSteps(smooth_steps);
+#pragma omp critical
                 precond_.reset(new Precond(*opS_, criterion, parms));
             }
             // Construct solver for system of linear equations.
