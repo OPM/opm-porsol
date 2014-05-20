@@ -70,10 +70,6 @@ list (APPEND EXAMPLE_SOURCE_FILES
 # find attic -name '*.c*' -printf '\t%p\n' | sort
 list (APPEND ATTIC_FILES
 	attic/appleyard/appleyard_test.cpp
-	attic/blackoil/bo_fluid_p_and_z_deps.cpp
-	attic/blackoil/bo_fluid_pressuredeps.cpp
-	attic/blackoil/bo_fluid_test.cpp
-	attic/blackoil/bo_well_test.cpp
 	attic/common/gie_test.cpp
 	attic/common/periodic_test.cpp
 	attic/common/rockjfunc_test.cpp
