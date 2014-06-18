@@ -66,6 +66,15 @@ macro (fortran_hook)
 endmacro (fortran_hook)
 
 macro (files_hook)
+	find_dune_version ("dune" "grid")
+	if ((DUNE_GRID_VERSION_MAJOR GREATER 2) OR
+		 ((DUNE_GRID_VERSION_MAJOR EQUAL 2) AND
+		(DUNE_GRID_VERSION_MINOR GREATER 2)))
+		# "known_answer_test.cpp" uses grid interface features that aren't
+		# supported in recent versions of Dune.
+		list (REMOVE_ITEM EXAMPLE_SOURCE_FILES
+			"examples/known_answer_test.cpp")
+	endIf ()
 endmacro (files_hook)
 
 macro (tests_hook)
