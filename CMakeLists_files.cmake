@@ -73,7 +73,6 @@ list (APPEND ATTIC_FILES
 	attic/common/gie_test.cpp
 	attic/common/periodic_test.cpp
 	attic/common/rockjfunc_test.cpp
-	attic/euler/euler_upstream_test.cpp
 	attic/mimetic/mimetic_ipeval_test.cpp
 	)
 
@@ -135,7 +134,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/SimulatorUtilities.hpp
 	opm/porsol/common/Wells.hpp
 	opm/porsol/euler/CflCalculator.hpp
-	opm/porsol/euler/EulerSolverTester.hpp
 	opm/porsol/euler/EulerUpstream.hpp
 	opm/porsol/euler/EulerUpstream_impl.hpp
 	opm/porsol/euler/EulerUpstreamImplicit.hpp
