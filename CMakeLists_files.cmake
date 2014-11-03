@@ -133,7 +133,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/SimulatorBase.hpp
 	opm/porsol/common/SimulatorTraits.hpp
 	opm/porsol/common/SimulatorUtilities.hpp
-	opm/porsol/common/SintefLegacyGridInterface.hpp
 	opm/porsol/common/Wells.hpp
 	opm/porsol/euler/CflCalculator.hpp
 	opm/porsol/euler/EulerSolverTester.hpp
