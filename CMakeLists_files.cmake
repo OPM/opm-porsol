@@ -130,7 +130,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/RockJfunc.hpp
 	opm/porsol/common/setupBoundaryConditions.hpp
 	opm/porsol/common/setupGridAndProps.hpp
-	opm/porsol/common/SimpleRock.hpp
 	opm/porsol/common/SimulatorBase.hpp
 	opm/porsol/common/SimulatorTraits.hpp
 	opm/porsol/common/SimulatorUtilities.hpp
