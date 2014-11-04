@@ -130,11 +130,9 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/RockJfunc.hpp
 	opm/porsol/common/setupBoundaryConditions.hpp
 	opm/porsol/common/setupGridAndProps.hpp
-	opm/porsol/common/SimpleRock.hpp
 	opm/porsol/common/SimulatorBase.hpp
 	opm/porsol/common/SimulatorTraits.hpp
 	opm/porsol/common/SimulatorUtilities.hpp
-	opm/porsol/common/SintefLegacyGridInterface.hpp
 	opm/porsol/common/Wells.hpp
 	opm/porsol/euler/CflCalculator.hpp
 	opm/porsol/euler/EulerSolverTester.hpp
