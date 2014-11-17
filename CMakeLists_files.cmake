@@ -73,7 +73,6 @@ list (APPEND ATTIC_FILES
 	attic/common/gie_test.cpp
 	attic/common/periodic_test.cpp
 	attic/common/rockjfunc_test.cpp
-	attic/euler/EulerSolverTester.hpp
 	attic/euler/euler_upstream_test.cpp
 	attic/mimetic/mimetic_ipeval_test.cpp
 	)
