@@ -5,8 +5,8 @@
 #Name of the module
 Module: opm-porsol
 Description: DUNE module containing porous media PDE solvers
-Version: 1.0
-Label: 2013.10
+Version: 2.0
+Label: 2015.04
 Maintainer: atgeirr@sintef.no
 #depending on 
 Depends: dune-common dune-grid dune-istl opm-core opm-material dune-cornerpoint
