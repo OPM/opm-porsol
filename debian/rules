@@ -27,3 +27,6 @@ override_dh_auto_install:
 
 override_dh_installdocs:
 	dh_installdocs --link-doc=libopm-porsol1
+
+override_dh_strip:
+	dh_strip -plibopm-porsol1 -plibopm-porsol1-bin --dbg-package=libopm-porsol1-dbg
