@@ -57,7 +57,7 @@ Package: libopm-porsol1-dbg
 Section: debug
 Architecture: any
 Multi-Arch: foreign
-Provides: libopm-core-dbg
-Depends: libopm-core1 (= ${binary:Version}), ${misc:Depends}
+Provides: libopm-porsol-dbg
+Depends: libopm-porsol1 (= ${binary:Version}), ${misc:Depends}
 Description: OPM porsol library -- debug symbols
  This module provides semi-implicit pressure and transport solvers using the IMPES method.
