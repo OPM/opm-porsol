@@ -38,6 +38,7 @@ list (APPEND MAIN_SOURCE_FILES
 	opm/porsol/common/BoundaryPeriodicity.cpp
 	opm/porsol/common/LinearSolverISTL.cpp
 	opm/porsol/common/setupGridAndProps.cpp
+	opm/porsol/euler/ImplicitCapillarity.cpp
 	)
 
 # originally generated with the command:
