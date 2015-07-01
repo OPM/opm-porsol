@@ -34,7 +34,11 @@ list (APPEND MAIN_SOURCE_FILES
 	opm/porsol/blackoil/fluid/MiscibilityLiveGas.cpp
 	opm/porsol/blackoil/fluid/MiscibilityLiveOil.cpp
 	opm/porsol/blackoil/fluid/MiscibilityProps.cpp
+	opm/porsol/common/blas_lapack.cpp
+	opm/porsol/common/BoundaryPeriodicity.cpp
 	opm/porsol/common/LinearSolverISTL.cpp
+	opm/porsol/common/setupGridAndProps.cpp
+	opm/porsol/euler/ImplicitCapillarity.cpp
 	)
 
 # originally generated with the command:
