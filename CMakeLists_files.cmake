@@ -36,7 +36,6 @@ list (APPEND MAIN_SOURCE_FILES
 	opm/porsol/blackoil/fluid/MiscibilityProps.cpp
 	opm/porsol/common/blas_lapack.cpp
 	opm/porsol/common/BoundaryPeriodicity.cpp
-	opm/porsol/common/LinearSolverISTL.cpp
 	opm/porsol/common/setupGridAndProps.cpp
 	opm/porsol/euler/ImplicitCapillarity.cpp
 	)
@@ -108,7 +107,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/blackoil/fluid/MiscibilityLiveOil.hpp
 	opm/porsol/blackoil/fluid/MiscibilityProps.hpp
 	opm/porsol/blackoil/fluid/MiscibilityWater.hpp
-	opm/porsol/common/AbstractLinearSolver.hpp
 	opm/porsol/common/BCRSMatrixBlockAssembler.hpp
 	opm/porsol/common/blas_lapack.hpp
 	opm/porsol/common/BoundaryConditions.hpp
@@ -116,7 +114,6 @@ list (APPEND PUBLIC_HEADER_FILES
 	opm/porsol/common/fortran.hpp
 	opm/porsol/common/GridInterfaceEuler.hpp
 	opm/porsol/common/ImplicitTransportDefs.hpp
-	opm/porsol/common/LinearSolverISTL.hpp
 	opm/porsol/common/Matrix.hpp
 	opm/porsol/common/MatrixInverse.hpp
 	opm/porsol/common/PeriodicHelpers.hpp
