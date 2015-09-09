@@ -9,4 +9,4 @@ Version: 1.0
 Label: 2013.10
 Maintainer: atgeirr@sintef.no
 #depending on 
-Depends: dune-common dune-grid dune-istl opm-core opm-material dune-cornerpoint
+Depends: dune-common dune-grid dune-istl opm-common opm-core opm-material dune-cornerpoint
