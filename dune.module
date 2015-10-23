@@ -1,12 +1,13 @@
-################################
-# Dune module information file #
-################################
+####################################################################
+# Dune module information file: This file gets parsed by dunecontrol
+# and by the CMake build scripts.
+####################################################################
 
-#Name of the module
 Module: opm-porsol
 Description: DUNE module containing porous media PDE solvers
 Version: 2015.10
 Label: 2015.10
 Maintainer: atgeirr@sintef.no
-#depending on 
+MaintainerName: Atgeirr F. Rasmussen
+Url: http://opm-project.org
 Depends: dune-common dune-grid dune-istl opm-common opm-core opm-material dune-cornerpoint
