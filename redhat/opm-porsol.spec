@@ -2,10 +2,10 @@
 # spec file for package opm-porsol
 #
 
-%define tag rc3
+%define tag rc1
 
 Name:           opm-porsol
-Version:        2013.10
+Version:        2015.10
 Release:        0
 Summary:        Open Porous Media - porsol library
 License:        GPL-3.0

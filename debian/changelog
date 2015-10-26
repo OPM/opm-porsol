@@ -1,23 +1,5 @@
-opm-porsol (2013.10-2~precise) precise; urgency=low
+opm-porsol (2015.10-rc1-1~trusty) trusty; urgency=medium
 
-  * New release
+  * New version
 
- -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 14 Oct 2013 15:48:18 +0200
-
-opm-porsol (2013.03-3) precise; urgency=low
-
-  * Disable LTO usage
-
- -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 08 Apr 2013 11:02:09 +0200
-
-opm-porsol (2013.03-2) precise; urgency=low
-
-  * Now compatible with precise + launchpad
-
- -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Wed, 03 Apr 2013 12:32:51 +0200
-
-opm-porsol (2013.03-1) precise; urgency=low
-
-  * Initial release
-
- -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 14 Jan 2013 15:33:54 +0100
+ -- Arne Morten Kvarving <arne.morten.kvarving@sintef.no>  Mon, 26 Oct 2015 09:22:11 +0100
