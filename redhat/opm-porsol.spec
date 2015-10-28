@@ -2,7 +2,7 @@
 # spec file for package opm-porsol
 #
 
-%define tag rc1
+%define tag rc2
 
 Name:           opm-porsol
 Version:        2015.10
